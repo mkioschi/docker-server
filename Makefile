@@ -12,15 +12,15 @@ export
 # Certbot ----------------------------------------------------------------------
 
 register-ssl-staging:
-	@chmod +x .docker/bin/register-ssl.sh
-	@sudo .docker/bin/register-ssl.sh \
+	@chmod +x ./bin/certbot/register-ssl.sh
+	@sudo ./bin/certbot/register-ssl.sh \
 								--dominios "$(DOMINIOS)" \
 								--email $(EMAIL) \
 								--staging
 
 register-ssl:
-	@chmod +x .docker/bin/register-ssl.sh
-	@sudo .docker/bin/register-ssl.sh \
+	@chmod +x ./bin/certbot/register-ssl.sh
+	@sudo ./bin/certbot/register-ssl.sh \
 								--dominios "$(DOMINIOS)" \
 								--email $(EMAIL) \
 								--flush

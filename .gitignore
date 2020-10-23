@@ -7,12 +7,11 @@
 ### Docker ###
 /.docker/certbot/logs/
 /.docker/nginx/logs/
-/.docker/nginx/letsencrypt/
-/.docker/nginx/acme-challenge/
 
-/.docker/nginx/sites-enabled/*
-!/.docker/nginx/sites-enabled/exemplo.com.br.conf
-!/.docker/nginx/sites-enabled/default.conf
+/etc/letsencrypt/*
+/etc/nginx/sites-enabled/*
+!/etc/nginx/sites-enabled/exemplo.com.br.conf
+!/etc/nginx/sites-enabled/default.conf
 
 
 ### Mantém diretórios ###

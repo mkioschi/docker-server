@@ -9,15 +9,15 @@ fi
 # TODO Verificar versão do docker-compose para 
 
 # Inicializa as variáveis
-diretorio=.docker/nginx/letsencrypt
+diretorio=./etc/letsencrypt
 docker_compose=
 dominios=
 email=
 staging=0
-rsa_key_size=4096
+rsa_key_size=1024
 staging_arg=
 dominios_args=
-flush_certs=0
+flush_certs=docker
 
 # Popula as variáveis com as opções passadas na execução
 while [ -n "$1" ]
