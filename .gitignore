@@ -1,0 +1,36 @@
+# Environment variables
+.env
+
+/www/*
+!/www/html/
+
+### Docker ###
+/.docker/certbot/logs/
+/.docker/nginx/logs/
+/.docker/nginx/letsencrypt/
+/.docker/nginx/acme-challenge/
+
+/.docker/nginx/sites-enabled/*
+!/.docker/nginx/sites-enabled/exemplo.com.br.conf
+!/.docker/nginx/sites-enabled/default.conf
+
+
+### Mantém diretórios ###
+!**/.gitkeep
+
+### Visual Studio Code ###
+/.vscode/*
+/!.vscode/settings.json
+/!.vscode/tasks.json
+/!.vscode/launch.json
+/!.vscode/extensions.json
+
+### Globais ###
+/.local
+/.history
+/.idea
+/.cache
+/.bash_history
+**/*.bak
+**/*.swp
+**/.DS_store
