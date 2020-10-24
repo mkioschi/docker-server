@@ -11,6 +11,7 @@ services:
     volumes:
       - ./.docker/nginx/logs/:/var/log/nginx/
       - ./etc/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./etc/nginx/sites-available/:/etc/nginx/sites-available/
       - ./etc/nginx/sites-enabled/:/etc/nginx/sites-enabled/
       - ./etc/nginx/ssl-conf/:/etc/nginx/ssl-conf/
       - ./etc/letsencrypt/:/etc/letsencrypt/
@@ -31,3 +32,8 @@ services:
     depends_on:
       - nginx
     entrypoint: /bin/sh -c "trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;"
+
+networks:
+  default:
+    name: docker-server-network
+    driver: bridge
