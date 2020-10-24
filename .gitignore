@@ -10,6 +10,10 @@
 /.docker/nginx/logs/
 
 /etc/letsencrypt/*
+/etc/nginx/sites-available/*
+!/etc/nginx/sites-available/default.conf
+!/etc/nginx/sites-available/example.php.conf
+!/etc/nginx/sites-available/example.ssl.conf
 /etc/nginx/sites-enabled/*
 !/etc/nginx/sites-enabled/default.conf
 
