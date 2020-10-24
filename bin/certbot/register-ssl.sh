@@ -14,7 +14,6 @@ docker_compose=
 dominios=
 email=
 staging=0
-rsa_key_size=4096
 staging_arg=
 dominios_args=
 flush_certs=docker
@@ -73,7 +72,7 @@ if [ -e "$diretorio/dhparams/ssl-dhparams.pem" ]; then
 else
     echo; echo "[i] Criando certificado Diffie–Hellman..."; echo;
 
-    docker-compose run --rm --entrypoint "openssl dhparam -out '/etc/letsencrypt/dhparams/ssl-dhparams.pem' $rsa_key_size" certbot
+    docker-compose run --rm --entrypoint "openssl dhparam -out '/etc/letsencrypt/dhparams/ssl-dhparams.pem' 1024" certbot
 fi
 
 # Cria certificados fake
@@ -87,7 +86,7 @@ for dominio in ${dominios[@]}; do
 
         path="/etc/letsencrypt/live/$dominio"
 
-        docker-compose run --rm --entrypoint "openssl req -x509 -nodes -newkey rsa:$rsa_key_size -days 1 -keyout '$path/privkey.pem' -out '$path/fullchain.pem' -subj '/CN=localhost'" certbot
+        docker-compose run --rm --entrypoint "openssl req -x509 -nodes -newkey rsa:4096 -days 1 -keyout '$path/privkey.pem' -out '$path/fullchain.pem' -subj '/CN=localhost'" certbot
 
         cp -p "$diretorio_dominio/fullchain.pem" "$diretorio_dominio/chain.pem"
     fi
