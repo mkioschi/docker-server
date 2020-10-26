@@ -1,11 +1,5 @@
 #!/bin/bash
 
-# Verifica se o script está sendo executado como root
-if [ "$EUID" -ne 0 ]; then
-	echo; echo "[error] Execute o $0 como root."; echo;
-	exit
-fi
-
 # TODO Verificar versão do docker-compose para 
 
 # Inicializa as variáveis
@@ -17,6 +11,9 @@ staging=0
 staging_arg=
 dominios_args=
 flush_certs=docker
+
+# Cria diretórios necessários
+mkdir -p $diretorio/dhparams
 
 # Popula as variáveis com as opções passadas na execução
 while [ -n "$1" ]
@@ -125,7 +122,7 @@ if [ -z "$dominios_args" ]; then
 else
     echo; echo "[i] Criando certificados."; echo;
 
-    docker-compose run --rm --entrypoint "certbot certonly --webroot -w /var/www/certbot $dominios_args $staging_arg --email $email --rsa-key-size $rsa_key_size --agree-tos --no-eff-email --force-renewal" certbot
+    docker-compose run --rm --entrypoint "certbot certonly --webroot -w /var/www/certbot $dominios_args $staging_arg --email $email --rsa-key-size 4096 --agree-tos --no-eff-email --force-renewal" certbot
 fi
 
 # Desliga todos serviços
